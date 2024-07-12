@@ -7,3 +7,4 @@ The DreamStory consists of (1) an LLM acting as a story director and (2) an inno
 Specifically, the MSD includes Masked Mutual Self-Attention (MMSA) and Masked Mutual Cross-Attention (MMCA) modules. MMSA module ensures detailed appearance consistency with reference images, while MMCA captures key attributes of subjects from their reference text to ensure semantic consistency. Both modules employ masking mechanisms to restrict each scene’s subjects to referencing the multimodal information of the corresponding subject, effectively preventing blending between multiple subjects.
 
 To validate our approach and promote progress in story visualization, we established a benchmark, **DS-500**, which can assess the overall performance of the story visualization framework, subject-identification accuracy, and the consistency of the generation model. Extensive experiments validate the effectiveness of DreamStory in both subjective and objective evaluations.
+

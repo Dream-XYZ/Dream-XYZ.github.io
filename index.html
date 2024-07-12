@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="DreamStory: Open-Domain Story Visualization via LLM-Guided Multi-Subject Consistent Diffusion">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DreamStory: Open-Domain Story Visualization via LLM-Guided Multi-Subject Consistent Diffusion
+  </title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+<style>
+  .publication-title {
+    font-family: "textsc "
+  }
+  video {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+  .image_wrapper {
+    position: relative;
+    width: 226px;
+    height: 226px;
+  }
+
+  .image_container {
+    border-radius: 10px; /*设置图片的圆角，可以根据你的需求调整这个值*/
+    /*margin: 10px; !* 在图片的外部元素上设置间距 *!*/
+    overflow: hidden; /* 为了保持图片的圆角效果 */
+    position: relative;
+    width: 100%;
+
+    padding-bottom: 100%;
+  }
+
+  .image_container img {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 这会使图片保持原始比例，但仍然填充其容器 */
+    object-position: center; /* 新增加的代码，让图片居中 */
+  }
+
+  .caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    font-family: 'Comic Sans MS', 'Verdana', 'Tahoma', sans-serif;
+    text-align: center; /* 让文本在其容器中水平居中 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .image_container:hover .caption {
+    opacity: 1;
+  }
+
+
+
+  .column.is-2.has-text-centered img.interpolation-image {
+
+    object-fit: cover;
+    border-radius: 10px;
+    transition: opacity 0.5s ease;
+    object-position: center; /* 新增加的代码，让图片居中 */
+  }
+
+  .column.is-2.has-text-centered:hover img.interpolation-image {
+    opacity: 0.5;
+  }
+
+  .column.is-2.has-text-centered .caption {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    font-family: 'Comic Sans MS', 'Verdana', 'Tahoma', sans-serif;
+    text-align: center; /* 让文本在其容器中水平居中 */
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .column.is-2.has-text-centered:hover .caption {
+    opacity: 1;
+  }
+
+  .columns.is-centered img {
+    margin-bottom: 20px; /* 或者你想要的任何值 */
+  }
+
+
+  .section { margin: 3px; padding: 5px; }
+</style>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 ">DreamStory: Open-Domain Story Visualization via LLM-Guided Multi-Subject Consistent Diffusion</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a>Huiguo He</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a href="https://hyang0511.github.io/">Huan Yang</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a>Zixi Tuo</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a>Yuan Zhou</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a href="https://plus.sist.shanghaitech.edu.cn/author/qiuyue-wang/">Qiuyue Wang</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a>Yuhang Zhang</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a href="https://github.com/lzy-tony">Zeyu Liu</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a>Wenhao Huang</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a>Hongyang Chao</a>&nbsp&nbsp&nbsp
+            </span>
+            <span class="author-block">
+              <a>Jian Yin</a>&nbsp&nbsp&nbsp
+            </span>
+            <br>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup> </sup>01.AI&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <span class="author-block"><sup> </sup>Sun Yat-sen University&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <span class="author-block"><sup> </sup>Beijing University of Posts and Telecommunications&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+            <span class="author-block"><sup> </sup>Tsinghua University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://Dream-XYZ.github.io"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+	            </span>
+
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <img src="./static/assets/teaser/teaser.png" alt="pipeline" style="width: 80%;">
+      <br>
+      <p>Illustration of our proposed DreamStory framework. This system takes a full narrative text as input, generates vivid visual content, and maintains the consistency of multiple subjects across various scenes within the story.</p>
+    </div>
+  </div>
+</section>
+<br>
+<br>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Story visualization aims to create visually compelling images or videos corresponding to textual narratives. Despite recent advances in diffusion models yielding promising results, existing methods still struggle to create a coherent sequence of subject-consistent frames based solely on a story. 
+            To this end, we propose an automatic open-domain story visualization framework by leveraging the LLMs and a novel multi-subject consistent diffusion model (<b>DreamStory</b>). 
+          </p>
+          <p>
+            The DreamStory consists of (1) an LLM acting as a story director and (2) an innovative <b>M</b>ulti-<b>S</b>ubject consistent <b>D</b>iffusion model (<b>MSD</b>) for generating consistent multi-subjects across the images. 
+            First, DreamStory employs the LLM to generate descriptive prompts for subjects and scenes aligned with the story, annotating each scene’s subjects for subsequent subject-consistent generation. Second, DreamStory utilizes these detailed subject descriptions to create portraits of the subjects, with these portraits and their corresponding textual information serving as multimodal guidance. Finally, the MSD uses this multimodal guidance to generate story scenes with consistent multi-subjects. 
+          </p>
+          <p>
+            Specifically, the MSD includes Masked Mutual Self-Attention (MMSA) and Masked Mutual Cross-Attention (MMCA) modules. MMSA module ensures detailed appearance consistency with reference images, while MMCA captures key attributes of subjects from their reference text to ensure semantic consistency. Both modules employ masking mechanisms to restrict each scene’s subjects to referencing the multimodal information of the corresponding subject, effectively preventing blending between multiple subjects.
+          </p>
+          <p>
+            To validate our approach and promote progress in story visualization, we established a benchmark, <b>DS-500</b>, which can assess the overall performance of the story visualization framework, subject-identification accuracy, and the consistency of the generation model. 
+            Extensive experiments validate the effectiveness of DreamStory in both subjective and objective evaluations.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <br>
+  <br>
+  
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Method Overview</h2>
+      <img src="./static/assets/method/pipeline.png" alt="pipeline" style="width: 80%;">
+      <p style="text-align: center;">The framework of our proposed DreamStory.
+        Initially, the LLM comprehends a story and generates detailed prompts for key subjects and scenes. 
+        These prompts are aligned and rewritten to enhance understanding of the diffusion model, ensuring accurate visual content generation. 
+        Subject portraits are then generated based on these prompts, serving as multimodal anchors for maintaining multi-subject consistency and enriching scenes with high-quality visual details, which facilitates subsequent video creation using an I2V model.</p>
+      <br>
+      <img src="./static/assets/method/msd.png" alt="msd" style="width: 80%;">
+      <p style="text-align: center;">The illustration of our Multi-Subjects consistent Diffusion models (MSD), along with its Masked Mutual Self-Attention (MMSA) and Masked Mutual Cross-Attention (MMCA) mechanisms. It uses two subjects as examples and can be extended to any number of subjects.
+        Query, Key, and Value projection in the attention layer have been omitted for ease of presentation.</p>
+      <br>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Qualitative Results</h2>
+      <br>
+    </div>
+  </div>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <img src="./static/assets/results/benchmark_vis_FSS3.png" alt="qualitative results" style="width: 80%;">
+      <p style="text-align: center;">Qualitative comparisons of our DreamStory with SOTA approaches on the FSS real story benchmark. 
+        Ours, MuDI, and ConsiStory utilize the subject image on the bottom-left as the reference image. In contrast, Story Diffusion references the subject image on the bottom-right.
+        Different subjects are indicated with different colors.</p>
+      <br>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <img src="./static/assets/results/benchmark_vis_2IPs.png" alt="qualitative results" style="width: 80%;">
+      <p style="text-align: center;">Qualitative comparisons of our DreamStory with SOTA approaches on the ChatGPT generated story benchmark. 
+        Ours, MuDI, and ConsiStory utilize the subject image on the bottom-left as the reference image. In contrast, Story Diffusion references the subject image on the bottom-right.
+        Different subjects are indicated with different colors.</p>
+      <br>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <img src="./static/assets/results/benchmark_vis.png" alt="qualitative results" style="width: 80%;">
+      <p style="text-align: center;">Qualitative comparisons of our DreamStory with SOTA approaches on the synthetic benchmark. 
+        Ours, MuDI, and ConsiStory utilize the subject image on the left as the reference image. In contrast, Story Diffusion references the subject image on the right.
+        Different subjects are indicated with different colors.
+        Our method better maintains consistency across multiple subjects, such as the cat in the first row, the color of the man's suit and the woman's hair in the second row, the hair color of the boy in the third row, and the head of the astronaut in the fourth row.</p>
+      <br>
+    </div>
+  </div>
+
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">User Study Results</h2>
+      <br>
+    </div>
+  </div>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <img src="./static/assets/results/user_study.png" alt="user study" style="width: 80%;">
+      <p style="text-align: center;">User Study on DS-500 benchmark. 
+        Dominant preferences to our full model are presented, compared with other competitive baselines (a,b, c) and ablation models (d,e).
+        T-I Alignment means text-image relevance.</p>
+      <br>
+    </div>
+  </div>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Quantitative Results</h2>
+      <br>
+    </div>
+  </div>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <img src="./static/assets/results/backbone.png" alt="user study" style="width: 80%;">
+      <p style="text-align: center;">Quantitative results of different backbone for our DreamStory on the DS-500 benchmark. Red indicate the best performance.</p>
+      <br>
+    </div>
+  </div>
+
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <img src="./static/assets/results/bench.png" alt="user study" style="width: 80%;">
+      <p style="text-align: center;">Quantitative comparison on benchmark. Red and blue indicate the best and the second-best performance.</p>
+      <br>
+    </div>
+  </div>
+
+
+</section>
+<br>
+<br>
+
+
+<section class="section" id="Acknowledgements">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgements</h2>
+    <br>
+    Website adapted from the following <a href="https://nerfies.github.io/">template</a>.
+  </div>
+</section>
+
+</body>
+</html>
